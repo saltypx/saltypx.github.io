@@ -1,12 +1,13 @@
 h1 {
     font-family: "Helvetica";
-    text-shadow: 0px 0px 20px white;
+    text-indent: 40px;;
 }
 
 p {
     font-family: "Helvetica";
-    font-size: 200%;
+    font-size: 120%;
     margin-left: 30px;
+    line-height: 4px;
 }
 
 h1, p, i {
@@ -32,7 +33,9 @@ html {
     box-sizing: border-box;
     margin: 0;
     transition: height 0.2s ease; /* Smooth height transition */
-    min-height: 90px; /* Ensure the header bar is never too thin */
+    min-height: 90px;
+    text-shadow: 0px 0px 22px white;
+    text-indent: 0px !important; /* Reset any text indentation */
 }
 
 body {

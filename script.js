@@ -3,6 +3,9 @@ document.addEventListener("DOMContentLoaded", function () {
     const headerText = document.querySelector(".top-bar h1");
     const body = document.body;
 
+    // URL to redirect to (set to null if you want to scroll to the top instead)
+    const redirectToUrl = null; // Example: "https://example.com";
+
     if (headerBar && headerText) {
         const baseFontSize = 30;
         const maxFontSize = 60;
@@ -37,13 +40,13 @@ document.addEventListener("DOMContentLoaded", function () {
             animationFrame = requestAnimationFrame(animateHeader);
         };
 
-         const handleMove = (x, y) => {
+        const handleMove = (x, y) => {
             const rect = headerBar.getBoundingClientRect();
             targetX = x - (rect.left + rect.width / 2);
             targetY = y - (rect.top + rect.height / 2);
         };
 
-       const handleMouseMove = (event) => {
+        const handleMouseMove = (event) => {
             handleMove(event.clientX, event.clientY);
         };
 
@@ -66,6 +69,15 @@ document.addEventListener("DOMContentLoaded", function () {
             targetY = 0;
         };
 
+        // Add click event to the header bar or header text
+        const handleClick = () => {
+            if (redirectToUrl) {
+                window.location.href = redirectToUrl;
+            } else {
+                window.scrollTo({ top: 0, behavior: "smooth" });
+            }
+        };
+
         headerBar.addEventListener("mousemove", handleMouseMove);
         headerBar.addEventListener("mouseenter", handleEnter);
         headerBar.addEventListener("mouseleave", handleLeave);
@@ -76,5 +88,7 @@ document.addEventListener("DOMContentLoaded", function () {
             handleEnter();
         }, { passive: false });
         headerBar.addEventListener("touchend", handleLeave, { passive: false });
+
+        headerBar.addEventListener("click", handleClick);
     }
 });
