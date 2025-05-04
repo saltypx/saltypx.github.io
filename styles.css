@@ -1,13 +1,13 @@
-
 h1 {
     font-family: "Helvetica";
-    font-weight: 4px;
+    font-size: var();
     text-shadow: 0px 0px 20px white;
     text-indent: 30px;
-1}
+}
 p {
     font-family: "Helvetica";
     font-size: 200%;
+    margin-left: 30px;
 }
 
 h1, p, i{
@@ -15,4 +15,67 @@ color:  white !important;
 }
 html{
     background-color: rgb(56, 72, 93);
+}
+
+.top-bar {
+    background-color: rgb(36, 44, 69);
+    color: white;
+    padding: 0 20px; /* Remove vertical padding to avoid interference */
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    display: flex; /* Enable flexbox */
+    align-items: center; /* Vertically center the content */
+    justify-content: center; /* Horizontally center the content */
+    height: 60px; /* Default height */
+    box-sizing: border-box; /* Include padding and border in height */
+}
+
+body {
+    margin-top: 120px; /* Adjust this value to match the height of your header */
+}
+
+#header-height-slider {
+    position: fixed; /* Ensure the slider is fixed on the screen */
+    top: 100px; /* Adjust this value to position the slider below the header */
+    left: 20px; /* Distance from the left edge of the screen */
+    z-index: 1001; /* Ensure the slider is above the .top-bar */
+    width: 150px; /* Length of the slider */
+    -webkit-appearance: none; /* Remove default styling */
+    appearance: none; /* Remove default styling */
+    background: rgb(56, 72, 93); /* Background color of the slider track */
+    height: 8px; /* Thickness of the slider track */
+    border-radius: 5px; /* Rounded corners for the track */
+    outline: none; /* Remove focus outline */
+}
+
+/* Style the slider thumb (the draggable part) */
+#header-height-slider::-webkit-slider-thumb {
+    -webkit-appearance: none; /* Remove default styling */
+    appearance: none; /* Remove default styling */
+    width: 20px; /* Width of the thumb */
+    height: 20px; /* Height of the thumb */
+    background: yellow; /* Color of the thumb */
+    border-radius: 50%; /* Make the thumb circular */
+    cursor: pointer; /* Change cursor to pointer on hover */
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2); /* Add a subtle shadow */
+}
+
+#header-height-slider::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+    background: yellow;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+#header-height-slider::-ms-thumb {
+    width: 20px;
+    height: 20px;
+    background: yellow;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
 }
