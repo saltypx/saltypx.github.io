@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const body = document.body;
 
     // URL to redirect to (set to null if you want to scroll to the top instead)
-    const redirectToUrl = null; // Example: "https://example.com";
+    const redirectToUrl = "https://simplysalt.carrd.co"; // Example: "https://example.com";
 
     if (headerBar && headerText) {
         const baseFontSize = 30;
