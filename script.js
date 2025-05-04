@@ -14,6 +14,11 @@ document.addEventListener("DOMContentLoaded", function () {
         let currentY = 0; // Current Y position for the text
         let animationFrame;
 
+        // Prevent default touch behavior to avoid swipe-to-reload
+        const preventDefaultTouch = (event) => {
+            event.preventDefault();
+        };
+
         // Smoothly animate the font size and position
         const animateText = () => {
             // Gradually approach the target font size
@@ -72,5 +77,9 @@ document.addEventListener("DOMContentLoaded", function () {
         headerBar.addEventListener("touchmove", handleTouchMove);
         headerBar.addEventListener("touchstart", handleEnter);
         headerBar.addEventListener("touchend", handleLeave);
+
+        // Prevent swipe-to-reload behavior
+        headerBar.addEventListener("touchstart", preventDefaultTouch, { passive: false });
+        headerBar.addEventListener("touchmove", preventDefaultTouch, { passive: false });
     }
 });
