@@ -23,13 +23,15 @@ html {
     padding: 10px 20px; /* Add padding to create space around the text */
     position: fixed;
     top: 0;
-    width: 100%;
+    left: 0; /* Ensure the bar starts at the very left of the viewport */
+    width: 100%; /* Ensure the bar spans the full width of the viewport */
     z-index: 1000;
     display: flex; /* Enable flexbox */
     align-items: center; /* Vertically center the content */
     justify-content: center; /* Horizontally center the content */
     height: auto; /* Allow height to adjust based on content */
-    box-sizing: border-box; /* Include padding in height calculation */
+    box-sizing: border-box; /* Include padding in width/height calculations */
+    margin: 0; /* Remove any default margin */
 }
 
 body {
