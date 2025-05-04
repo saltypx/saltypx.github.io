@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", function () {
     if (headerBar && headerText) {
         const baseFontSize = 20; // Base font size in pixels
         const maxFontSize = 40; // Maximum font size in pixels
-        const attractionSpeed = 0.1; // Speed at which the text moves towards the mouse
+        const attractionSpeed = 0.1; // Speed at which the text moves towards the touch/mouse
         let targetFontSize = baseFontSize; // The desired font size
         let currentFontSize = baseFontSize; // The current font size
         let targetX = 0; // Target X position for the text
@@ -31,30 +31,46 @@ document.addEventListener("DOMContentLoaded", function () {
             animationFrame = requestAnimationFrame(animateText);
         };
 
-        // Handle mouse movement over the header bar
-        const handleMouseMove = (event) => {
+        // Handle mouse or touch movement over the header bar
+        const handleMove = (x, y) => {
             const rect = headerBar.getBoundingClientRect();
-            targetX = event.clientX - (rect.left + rect.width / 2); // Horizontal offset
-            targetY = event.clientY - (rect.top + rect.height / 2); // Vertical offset
+            targetX = x - (rect.left + rect.width / 2); // Horizontal offset
+            targetY = y - (rect.top + rect.height / 2); // Vertical offset
         };
 
-        // Handle mouse enter on the header bar
-        const handleMouseEnter = () => {
+        // Handle mousemove event
+        const handleMouseMove = (event) => {
+            handleMove(event.clientX, event.clientY);
+        };
+
+        // Handle touchmove event
+        const handleTouchMove = (event) => {
+            const touch = event.touches[0]; // Get the first touch point
+            handleMove(touch.clientX, touch.clientY);
+        };
+
+        // Handle mouse or touch enter on the header bar
+        const handleEnter = () => {
             targetFontSize = maxFontSize; // Increase font size
             cancelAnimationFrame(animationFrame);
             animationFrame = requestAnimationFrame(animateText);
         };
 
-        // Handle mouse leave from the header bar
-        const handleMouseLeave = () => {
+        // Handle mouse or touch leave from the header bar
+        const handleLeave = () => {
             targetFontSize = baseFontSize; // Reset font size
             targetX = 0; // Reset position
             targetY = 0; // Reset position
         };
 
-        // Add event listeners
+        // Add event listeners for mouse
         headerBar.addEventListener("mousemove", handleMouseMove);
-        headerBar.addEventListener("mouseenter", handleMouseEnter);
-        headerBar.addEventListener("mouseleave", handleMouseLeave);
+        headerBar.addEventListener("mouseenter", handleEnter);
+        headerBar.addEventListener("mouseleave", handleLeave);
+
+        // Add event listeners for touch
+        headerBar.addEventListener("touchmove", handleTouchMove);
+        headerBar.addEventListener("touchstart", handleEnter);
+        headerBar.addEventListener("touchend", handleLeave);
     }
 });
